@@ -1,0 +1,140 @@
+:root {
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --bg-soft: #334155;
+  --testo: #e2e8f0;
+  --testo-soft: #94a3b8;
+  --primario: #38bdf8;
+  --primario-scuro: #0ea5e9;
+  --ok: #22c55e;
+  --errore: #ef4444;
+  --bordo: #334155;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--testo);
+  line-height: 1.5;
+}
+
+.contenitore {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+header { text-align: center; margin-bottom: 2rem; }
+h1 { font-size: 2.4rem; margin: 0; }
+.sottotitolo { color: var(--testo-soft); margin: .3rem 0 0; }
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--bordo);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.nascosto { display: none !important; }
+
+/* Zona drag & drop */
+.zona-drop {
+  border: 2px dashed var(--bg-soft);
+  border-radius: 12px;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.zona-drop.attiva {
+  border-color: var(--primario);
+  background: rgba(56, 189, 248, .08);
+}
+.zona-drop .icona { font-size: 2.5rem; }
+.nome-file { color: var(--primario); font-weight: 600; margin-top: .75rem; min-height: 1.2em; }
+
+.piccolo { font-size: .85rem; color: var(--testo-soft); }
+.nota { margin-top: .75rem; }
+
+.link {
+  background: none; border: none; color: var(--primario);
+  cursor: pointer; font: inherit; text-decoration: underline; padding: 0;
+}
+
+/* Opzioni */
+.opzioni {
+  display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.25rem 0;
+}
+.opzioni label {
+  display: flex; flex-direction: column; gap: .35rem;
+  font-size: .85rem; color: var(--testo-soft); flex: 1; min-width: 180px;
+}
+select {
+  background: var(--bg); color: var(--testo);
+  border: 1px solid var(--bordo); border-radius: 8px;
+  padding: .55rem .65rem; font-size: 1rem;
+}
+
+/* Bottoni */
+.btn-primario, .btn-secondario {
+  display: inline-block; text-align: center; text-decoration: none;
+  border: none; border-radius: 9px; cursor: pointer;
+  font-size: 1rem; font-weight: 600; padding: .75rem 1.25rem;
+}
+.btn-primario {
+  width: 100%; background: var(--primario-scuro); color: #04293a;
+}
+.btn-primario:hover:not(:disabled) { background: var(--primario); }
+.btn-primario:disabled { opacity: .45; cursor: not-allowed; }
+.btn-secondario {
+  background: var(--bg-soft); color: var(--testo); margin: .25rem .25rem 0 0;
+}
+.btn-secondario:hover { background: #475569; }
+
+/* Avanzamento */
+.riga-titolo { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+h2 { margin: 0 0 .25rem; font-size: 1.3rem; }
+.badge {
+  background: var(--bg-soft); color: var(--testo);
+  border-radius: 999px; padding: .2rem .7rem; font-size: .8rem; white-space: nowrap;
+}
+.badge.ok { background: rgba(34,197,94,.2); color: var(--ok); }
+.badge.errore { background: rgba(239,68,68,.2); color: var(--errore); }
+
+.barra-progresso {
+  height: 14px; background: var(--bg); border-radius: 999px;
+  overflow: hidden; margin: 1rem 0 .5rem;
+}
+.riempimento {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--primario-scuro), var(--primario));
+  transition: width .4s ease;
+}
+
+.meta {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  color: var(--testo-soft); font-size: .85rem; margin: .75rem 0;
+}
+
+.anteprima {
+  background: var(--bg); border: 1px solid var(--bordo);
+  border-radius: 10px; padding: 1rem; min-height: 90px; max-height: 280px;
+  overflow-y: auto; white-space: pre-wrap; color: var(--testo);
+  font-size: .95rem;
+}
+
+.zona-download { margin-top: 1.5rem; }
+.zona-errore { margin-top: 1.5rem; }
+.zona-errore pre {
+  background: var(--bg); border: 1px solid var(--errore);
+  border-radius: 8px; padding: 1rem; overflow-x: auto;
+  color: #fca5a5; white-space: pre-wrap;
+}
+
+#btn-nuovo { margin-top: 1.5rem; }
+
+footer { text-align: center; margin-top: 2rem; }

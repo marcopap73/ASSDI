@@ -1,0 +1,20 @@
+# Ambienti virtuali Python
+venv/
+.venv/
+env/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Dati dell'app (upload e trascrizioni prodotte)
+assdi_dati/
+dati/
+
+# Cache dei modelli (di norma in ~/.cache/huggingface)
+models/
+
+# File di sistema
+.DS_Store
+Thumbs.db
