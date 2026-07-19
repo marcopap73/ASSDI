@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block titolo %}Le mie domande — Fast Mentoring{% endblock %}
+{% block contenuto %}
+<div class="intestazione-pagina">
+  <h1>Le mie domande</h1>
+  <div class="azioni">
+    <span class="pillola">Ticket disponibili: {{ utente.ticket_disponibili }}</span>
+    <a class="pulsante" href="/nuova-domanda">+ Nuova domanda</a>
+    <a class="pulsante secondario" href="/ticket">Acquista ticket</a>
+  </div>
+</div>
+
+{% if not domande %}
+  <p class="vuoto">Non hai ancora inviato nessuna domanda.</p>
+{% endif %}
+
+<ul class="elenco-domande">
+  {% for domanda in domande %}
+  <li class="scheda-domanda stato-{{ domanda.stato }}">
+    <div class="riga-meta">
+      <span class="etichetta-area">{{ aree.get(domanda.area, domanda.area) }}</span>
+      <span class="stato">{{ 'In attesa di risposta' if domanda.stato == 'in_coda' else 'Risposta ricevuta' }}</span>
+    </div>
+    <p class="testo-domanda">{{ domanda.testo }}</p>
+    {% if domanda.risposta_testo %}
+    <div class="riquadro-risposta">
+      <strong>Risposta del mentor:</strong>
+      <p>{{ domanda.risposta_testo }}</p>
+    </div>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
