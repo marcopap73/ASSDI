@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block titolo %}Acquista ticket — Fast Mentoring{% endblock %}
+{% block contenuto %}
+<h1>Acquista ticket</h1>
+<p class="sottotitolo">Hai {{ utente.ticket_disponibili }} ticket disponibili. Pagamento in modalita' demo: nessun addebito reale.</p>
+
+<div class="griglia-pacchetti">
+  {% for pacchetto in pacchetti %}
+  <div class="scheda-pacchetto">
+    <h2>{{ pacchetto.nome }}</h2>
+    <p class="prezzo">{{ '%.2f'|format(pacchetto.prezzo_centesimi / 100) }} €</p>
+    <p class="numero-ticket">{{ pacchetto.numero_ticket }} domand{{ 'a' if pacchetto.numero_ticket == 1 else 'e' }}</p>
+    <form method="post" action="/ticket/{{ pacchetto.id }}/acquista">
+      <button type="submit">Acquista</button>
+    </form>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

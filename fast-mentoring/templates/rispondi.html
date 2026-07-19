@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titolo %}Rispondi — Fast Mentoring{% endblock %}
+{% block contenuto %}
+<div class="scheda-form">
+  <h1>Rispondi alla domanda</h1>
+  <div class="riquadro-domanda-originale">
+    <div class="riga-meta">
+      <span class="etichetta-area">{{ aree.get(domanda.area, domanda.area) }}</span>
+      <span class="mittente">{{ domanda.nome_utente }}{% if domanda.ente_utente %} · {{ domanda.ente_utente }}{% endif %}</span>
+    </div>
+    <p class="testo-domanda">{{ domanda.testo }}</p>
+  </div>
+  <form method="post" action="/mentor/domanda/{{ domanda.id }}/rispondi">
+    <label>La tua risposta
+      <textarea name="testo" rows="10" required></textarea>
+    </label>
+    <button type="submit">Invia risposta</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block titolo %}Nuova domanda — Fast Mentoring{% endblock %}
+{% block contenuto %}
+<div class="scheda-form">
+  <h1>Nuova domanda</h1>
+  <p class="sottotitolo">Hai {{ utente.ticket_disponibili }} ticket disponibili. Inviare una domanda consuma 1 ticket.</p>
+  {% if errore %}<p class="errore">{{ errore }}</p>{% endif %}
+  <form method="post" action="/nuova-domanda">
+    <label>Area di intervento
+      <select name="area" required>
+        <option value="">Scegli un'area…</option>
+        {% for chiave, etichetta in aree.items() %}
+        <option value="{{ chiave }}">{{ etichetta }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Descrivi la tua domanda o il caso
+      <textarea name="testo" rows="8" required placeholder="Non inserire dati identificativi dell'assistito (nome, indirizzo, ecc.): descrivi il caso in forma anonima."></textarea>
+    </label>
+    <button type="submit">Invia domanda (1 ticket)</button>
+  </form>
+</div>
+{% endblock %}

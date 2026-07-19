@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASSDI · Trascrizione audio in italiano</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="contenitore">
+    <header>
+      <h1>🎙️ ASSDI</h1>
+      <p class="sottotitolo">Trascrizione audio fedele, in italiano — elaborazione locale e privata.</p>
+    </header>
+
+    <!-- Pannello di caricamento -->
+    <section id="pannello-upload" class="card">
+      <div id="zona-drop" class="zona-drop">
+        <input type="file" id="input-file" accept="audio/*,video/*,.mp3,.m4a,.wav,.flac,.ogg,.opus,.mp4,.mkv" hidden />
+        <div class="zona-drop-contenuto">
+          <div class="icona">⬆️</div>
+          <p><strong>Trascina qui il file audio</strong> oppure <button type="button" id="btn-sfoglia" class="link">sfoglia</button></p>
+          <p class="piccolo">Sono supportati file di molte ore (mp3, m4a, wav, flac, ogg, opus, mp4…)</p>
+          <p id="nome-file-scelto" class="nome-file"></p>
+        </div>
+      </div>
+
+      <div class="opzioni">
+        <label>
+          Lingua
+          <select id="select-lingua">
+            <option value="it" selected>Italiano</option>
+            <option value="auto">Rilevamento automatico</option>
+          </select>
+        </label>
+        <label>
+          Qualità (modello)
+          <select id="select-modello"></select>
+        </label>
+      </div>
+
+      <button id="btn-avvia" class="btn-primario" disabled>Avvia trascrizione</button>
+      <p class="piccolo nota">Il primo avvio scarica il modello Whisper (una sola volta). Modelli più grandi = più fedeli ma più lenti.</p>
+    </section>
+
+    <!-- Pannello di avanzamento -->
+    <section id="pannello-lavoro" class="card nascosto">
+      <div class="riga-titolo">
+        <h2 id="titolo-lavoro">Trascrizione in corso…</h2>
+        <span id="badge-stato" class="badge">in corso</span>
+      </div>
+
+      <div class="barra-progresso">
+        <div id="riempimento-progresso" class="riempimento"></div>
+      </div>
+      <p id="testo-progresso" class="piccolo">Preparazione…</p>
+
+      <div class="meta">
+        <span id="meta-lingua"></span>
+        <span id="meta-segmenti"></span>
+        <span id="meta-tempo"></span>
+      </div>
+
+      <h3>Anteprima dal vivo</h3>
+      <div id="anteprima" class="anteprima">…</div>
+
+      <div id="zona-download" class="zona-download nascosto">
+        <h3>✅ Trascrizione completata — scarica:</h3>
+        <div class="bottoni-download">
+          <a id="dl-txt" class="btn-secondario" href="#">Testo (.txt)</a>
+          <a id="dl-srt" class="btn-secondario" href="#">Sottotitoli (.srt)</a>
+          <a id="dl-vtt" class="btn-secondario" href="#">WebVTT (.vtt)</a>
+        </div>
+      </div>
+
+      <div id="zona-errore" class="zona-errore nascosto">
+        <h3>⚠️ Si è verificato un errore</h3>
+        <pre id="testo-errore"></pre>
+      </div>
+
+      <button id="btn-nuovo" class="btn-secondario nascosto">Trascrivi un altro file</button>
+    </section>
+
+    <footer>
+      <p class="piccolo">I file restano sul tuo computer. Nessun caricamento su server esterni.</p>
+    </footer>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

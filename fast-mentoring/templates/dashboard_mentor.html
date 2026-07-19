@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block titolo %}Coda domande — Fast Mentoring{% endblock %}
+{% block contenuto %}
+<h1>Domande in attesa di risposta</h1>
+
+{% if not in_coda %}
+  <p class="vuoto">Nessuna domanda in coda al momento.</p>
+{% endif %}
+
+<ul class="elenco-domande">
+  {% for domanda in in_coda %}
+  <li class="scheda-domanda">
+    <div class="riga-meta">
+      <span class="etichetta-area">{{ aree.get(domanda.area, domanda.area) }}</span>
+      <span class="mittente">{{ domanda.nome_utente }}{% if domanda.ente_utente %} · {{ domanda.ente_utente }}{% endif %}</span>
+    </div>
+    <p class="testo-domanda">{{ domanda.testo }}</p>
+    <a class="pulsante" href="/mentor/domanda/{{ domanda.id }}">Rispondi</a>
+  </li>
+  {% endfor %}
+</ul>
+
+<h2>Ultime risposte inviate</h2>
+{% if not risposte_recenti %}
+  <p class="vuoto">Non hai ancora risposto a nessuna domanda.</p>
+{% endif %}
+<ul class="elenco-compatto">
+  {% for r in risposte_recenti %}
+  <li>{{ r.nome_utente }} — {{ aree.get(r.area, r.area) }} — {{ r.risposta_il }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

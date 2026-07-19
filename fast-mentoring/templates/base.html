@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titolo %}Fast Mentoring — Qualzar Academy Italia{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="intestazione">
+    <a class="logo" href="/">Fast Mentoring <span>Qualzar Academy Italia</span></a>
+    {% if utente %}
+    <nav>
+      {% if utente.ruolo == 'mentor' %}
+        <a href="/mentor">Coda domande</a>
+      {% else %}
+        <a href="/dashboard">Le mie domande</a>
+        <a href="/nuova-domanda">Nuova domanda</a>
+        <a href="/ticket">Ticket ({{ utente.ticket_disponibili }})</a>
+      {% endif %}
+      <form action="/esci" method="post" class="form-esci">
+        <button type="submit">Esci</button>
+      </form>
+    </nav>
+    {% endif %}
+  </header>
+  <main class="contenuto">
+    {% block contenuto %}{% endblock %}
+  </main>
+</body>
+</html>
