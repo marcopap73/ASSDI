@@ -1,0 +1,7 @@
+# Motore di trascrizione locale (gratuito, basato su Whisper)
+faster-whisper>=1.0.3
+
+# Server web
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.9
